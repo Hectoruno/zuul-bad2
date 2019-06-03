@@ -45,12 +45,12 @@ public class Game
         cuarto = new Room("en el cuarto de basuras");
 
         // initialise room exits
-        hall.setExits(null, null, comedor, sala);
-        sala.setExits(null, hall, null, null);
-        comedor.setExits(hall, patio, null, habitaciones);
-        habitaciones.setExits(null, comedor, null, null);
-        patio.setExits(null, null, cuarto, comedor);
-        cuarto.setExits(patio, null, null, null);
+        hall.setExits(null, null, comedor, sala, patio);
+        sala.setExits(null, hall, null, null, comedor);
+        comedor.setExits(hall, patio, null, habitaciones, cuarto);
+        habitaciones.setExits(null, comedor, null, null, null);
+        patio.setExits(null, null, cuarto, comedor, null);
+        cuarto.setExits(patio, null, null, null, null);
 
         currentRoom = hall;  // start game outside
     }
@@ -158,6 +158,9 @@ public class Game
         if(direction.equals("west")) {
             nextRoom = currentRoom.westExit;
         }
+        if(direction.equals("southEast")) {
+            nextRoom = currentRoom.southEastExit;
+        }
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
@@ -198,6 +201,9 @@ public class Game
         }
         if(currentRoom.westExit != null) {
             System.out.print("west ");
+        }
+        if(currentRoom.southEastExit != null) {
+            System.out.print("southEast ");
         }
         System.out.println();
     }
