@@ -45,12 +45,12 @@ public class Game
         cuarto = new Room("en el cuarto de basuras");
 
         // initialise room exits
-        hall.setExits(null, null, comedor, sala, patio);
-        sala.setExits(null, hall, null, null, comedor);
-        comedor.setExits(hall, patio, null, habitaciones, cuarto);
-        habitaciones.setExits(null, comedor, null, null, null);
-        patio.setExits(null, null, cuarto, comedor, null);
-        cuarto.setExits(patio, null, null, null, null);
+        hall.setExits(null, null, comedor, sala, patio, null);
+        sala.setExits(null, hall, null, null, comedor, null);
+        comedor.setExits(hall, patio, null, habitaciones, cuarto, sala);
+        habitaciones.setExits(null, comedor, null, null, null, null);
+        patio.setExits(null, null, cuarto, comedor, null, hall);
+        cuarto.setExits(patio, null, null, null, null, comedor);
 
         currentRoom = hall;  // start game outside
     }
