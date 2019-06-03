@@ -45,12 +45,27 @@ public class Game
         cuarto = new Room("en el cuarto de basuras");
 
         // initialise room exits
-        hall.setExits(null, null, comedor, sala, patio, null);
-        sala.setExits(null, hall, null, null, comedor, null);
-        comedor.setExits(hall, patio, null, habitaciones, cuarto, sala);
-        habitaciones.setExits(null, comedor, null, null, null, null);
-        patio.setExits(null, null, cuarto, comedor, null, hall);
-        cuarto.setExits(patio, null, null, null, null, comedor);
+        hall.setExit("south", comedor);
+        hall.setExit("west", sala);
+        hall.setExit("southEast", patio);
+
+        sala.setExit("east", hall);
+        sala.setExit("southEast", comedor);
+
+        comedor.setExit("north", hall);
+        comedor.setExit("east", patio);
+        comedor.setExit("west", habitaciones);        
+        comedor.setExit("southEast", cuarto);
+        comedor.setExit("northWest", sala);
+
+        habitaciones.setExit("east", comedor);
+        
+        patio.setExit("south", cuarto);
+        patio.setExit("west", comedor);
+        patio.setExit("northWest", hall);
+
+        cuarto.setExit("north", patio);
+        cuarto.setExit("northWest", comedor);
 
         currentRoom = hall;  // start game outside
     }
@@ -174,7 +189,6 @@ public class Game
 
     private void printLocationInfo(){
         System.out.println("You are " + currentRoom.getDescription());
-        System.out.print("Exits: ");
         System.out.print(currentRoom.getExitString());
         
         System.out.println();
