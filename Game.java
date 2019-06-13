@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room ultimaRoom;
 
     /**
      * Create the game and initialise its internal map.
@@ -27,6 +28,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        ultimaRoom = null;
     }
 
     /**
@@ -130,6 +132,9 @@ public class Game
         else if (commandWord.equals("eat")) {
             eat();
         }
+        else if (commandWord.equals("back")) {
+            back();
+        }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
         }
@@ -174,6 +179,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            ultimaRoom = currentRoom;
             currentRoom = nextRoom;
             printLocationInfo();
         }
@@ -204,9 +210,18 @@ public class Game
     private void look() {	
         System.out.println(currentRoom.getLongDescription());
     }
-    
+
     private void eat() 
     {
         System.out.println("You have eaten now and you are not hungry any more");
+    }
+
+    private void back() 
+    {
+        if (ultimaRoom != null){
+            currentRoom = ultimaRoom;
+            ultimaRoom = null;
+            printLocationInfo ();
+        } 
     }
 }
