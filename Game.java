@@ -37,12 +37,12 @@ public class Game
         Room hall, sala, comedor, habitaciones, patio, cuarto;
 
         // create the rooms
-        hall = new Room("entrada del manicomio",new Item ("null", 0));
-        sala = new Room("sala de vigilancia",new Item ("llave", 1));
-        comedor = new Room("en el comedor",new Item ("null", 0));
-        habitaciones = new Room("en las habitaciones",new Item ("null", 0));
-        patio = new Room("en el patio",new Item ("linterna", 1));
-        cuarto = new Room("en el cuarto de basuras",new Item ("null", 0));
+        hall = new Room("entrada del manicomio");
+        sala = new Room("sala de vigilancia");
+        comedor = new Room("en el comedor");
+        habitaciones = new Room("en las habitaciones");
+        patio = new Room("en el patio");
+        cuarto = new Room("en el cuarto de basuras");
 
         // initialise room exits
         hall.setExit("south", comedor);
@@ -68,6 +68,8 @@ public class Game
         cuarto.setExit("northWest", comedor);
 
         currentRoom = hall;  // start game outside
+        sala.addItem ("llave",1);
+        patio.addItem ("linterna",1);
     }
 
     /**
